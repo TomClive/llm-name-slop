@@ -1,0 +1,27 @@
+{
+  "cluster_hits": {
+    "Amara Okafor": {},
+    "Aris Thorne": {
+      "deepseek-v3.1-terminus": 6
+    },
+    "Elara Voss": {},
+    "Elena Vasquez": {
+      "claude-sonnet-4.5": 3
+    },
+    "Lena Petrova": {
+      "deepseek-v3.1-terminus": 1,
+      "gemini-2.5-flash": 1
+    },
+    "Marcus Chen": {
+      "claude-sonnet-4.5": 9
+    }
+  },
+  "marcus_chen": {
+    "n": 200,
+    "marcus": 65,
+    "chen": 70,
+    "both": 38,
+    "expected": 22.7,
+    "cooc_lift": 1.67
+  }
+}

@@ -76,8 +76,8 @@ Names marked † have fewer than 10 pooled hits — thin evidence; treat the lif
 
 | name | type | pooled n | models | top genre |
 |---|---|---|---|---|
-| Quasar | surname | 13 | 2 | science fiction |
 | Elianore | first | 13 | 2 | science fiction |
+| Quasar | surname | 13 | 2 | science fiction |
 | Shadowglow | surname | 13 | 2 | high fantasy |
 | Vex | surname | 13 | 2 | science fiction |
 | Lyrien† | first | 5 | 2 | high fantasy |
@@ -183,7 +183,7 @@ Names marked † have fewer than 10 pooled hits — thin evidence; treat the lif
 | Shadowglow | surname | 10 | 5% | 3836839× |
 | Lyra | first | 9 | 4% | 1440× |
 | Jenkins | surname | 9 | 4% | 25× |
-| Quasar | surname | 9 | 4% | 3836839× |
+| Elianore | first | 9 | 4% | 3381514× |
 
 ### openai/gpt-5-mini
 
@@ -236,7 +236,7 @@ First-name mentions classified via SSA sex ratio (≥80% one sex = gendered; the
 - **deepseek-v3.1-terminus** — top ♀: Elara 38, Clara 30, Lena 17, Maya 17, Chloe 6, Eleanor 5
 - **gemini-2.5-flash** — top ♀: Elara 92, Sarah 15, Eleanor 14, Amelia 10, Maya 8, Chloe 5
 - **llama-4-maverick** — top ♀: Emily 81, Rachel 58, Emilia 37, Eira 12, Sophia 11, Olivia 11
-- **gpt-5-mini** — top ♀: Emily 60, Rachel 37, Emilia 20, Emma 19, Lena 12, Sophia 12
+- **gpt-5-mini** — top ♀: Emily 60, Rachel 37, Emilia 20, Emma 19, Sophia 12, Lena 12
 
 ## Protagonist vs secondary character
 The prompt asks for a protagonist then one secondary character, so the first-named person is the protagonist and the second is the secondary. Splitting by role reveals a strong structural default that the pooled gender balance hides.
@@ -265,6 +265,20 @@ Top protagonist names vs top secondary names (pooled):
 - **protagonists:** Elara 130, Emily 128, Emilia 52, Maya 46, Leo 35, Arthur 33, Sarah 32, Marcus 28
 - **secondary:** Chen 55, Wilson 47, Leo 44, Liam 37, Rachel 29, Taylor 25, Clara 23, Thorne 20
 
+## Cross-check vs prior work (the ghost couple)
+Presence of the character clusters reported by Brzozowski & Chung (arXiv:2606.02184) in our fiction samples (raw full-name match):
+
+| name | their attribution | total hits | our hits by model |
+|---|---|---|---|
+| Elena Vasquez | claude (theirs) | 3 | claude-sonnet-4.5:3 |
+| Marcus Chen | claude (theirs) | 9 | claude-sonnet-4.5:9 |
+| Amara Okafor | claude (theirs) | 0 | — |
+| Aris Thorne | gemini (theirs) | 6 | deepseek-v3.1-terminus:6 |
+| Lena Petrova | gemini (theirs) | 2 | deepseek-v3.1-terminus:1, gemini-2.5-flash:1 |
+| Elara Voss | gpt (theirs) | 0 | — |
+
+**Ensemble test (Marcus + Chen, Claude):** Marcus in 65/200 stories, Chen in 70, both in **38** (chance would give ~22.7) — a co-occurrence lift of 1.67×. Real but modest; the 'couple' is looser in fiction than in fabricated-expert text.
+
 ## Genre conditioning
 Blocklist names with ≥60% of hits in a single genre:
 
@@ -282,8 +296,8 @@ Blocklist names with ≥60% of hits in a single genre:
 | Gable | horror | 75% | 4 |
 | Matt | horror | 88% | 8 |
 | Maynard | contemporary story set in the UK | 71% | 7 |
-| Quasar | science fiction | 92% | 13 |
 | Elianore | science fiction | 92% | 13 |
+| Quasar | science fiction | 92% | 13 |
 | Shadowglow | high fantasy | 100% | 13 |
 | Vex | science fiction | 77% | 13 |
 | Lyrien | high fantasy | 100% | 5 |

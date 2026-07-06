@@ -270,19 +270,23 @@ def analyze() -> None:
         "total": len(all_recs),
     }
 
+    ghost = ghost_couple_check(by_model)
+
     os.makedirs(config.OUTPUT_DIR, exist_ok=True)
     write_csv(rows, models)
     blocklist = write_blocklist(rows)
     write_report(rows, models, n_per_model, blocklist, gender, roles,
-                 trunc, coverage)
+                 trunc, coverage, ghost)
     write_heatmap(rows, models, n_per_model)
     for name, obj in [("gender_breakdown.json", gender),
-                      ("role_breakdown.json", roles)]:
+                      ("role_breakdown.json", roles),
+                      ("ghost_couple_check.json", ghost)]:
         with open(os.path.join(config.OUTPUT_DIR, name), "w",
                   encoding="utf-8") as f:
             json.dump(obj, f, indent=2, ensure_ascii=False)
     print(f"Wrote name_counts.csv, blocklist.json, report.md, heatmap.html, "
-          f"gender_breakdown.json, role_breakdown.json to {config.OUTPUT_DIR}")
+          f"gender_breakdown.json, role_breakdown.json, ghost_couple_check.json "
+          f"to {config.OUTPUT_DIR}")
 
 
 def gender_breakdown(by_model: dict, known_first: set, female: Counter,
@@ -404,6 +408,46 @@ def role_breakdown(by_model: dict, known_first: set, female: Counter,
     return out
 
 
+# Clusters reported by Brzozowski & Chung, "The Ghost Couple" (arXiv:2606.02184),
+# used to cross-check their fingerprints against our fiction-domain samples.
+GHOST_COUPLE_CLUSTERS = {
+    "claude": ["Elena Vasquez", "Marcus Chen", "Amara Okafor"],
+    "gemini": ["Aris Thorne", "Lena Petrova"],
+    "gpt": ["Elara Voss"],
+}
+
+
+def ghost_couple_check(by_model: dict) -> dict:
+    """Cross-check the prior-work clusters + a co-occurrence test.
+
+    Uses raw string presence (the clusters are exact full names), plus a
+    Marcus/Chen co-occurrence lift in Claude to test the 'ensemble' claim.
+    """
+    phrases = sorted({p for ps in GHOST_COUPLE_CLUSTERS.values() for p in ps})
+    hits = {p: Counter() for p in phrases}
+    for model, samples in by_model.items():
+        short = model.split("/")[-1]
+        for rec in samples:
+            for p in phrases:
+                if p in rec["completion"]:
+                    hits[p][short] += 1
+
+    # Marcus/Chen co-occurrence in Claude (chance vs observed)
+    claude = next((s for m, s in by_model.items() if "claude" in m), [])
+    n = len(claude) or 1
+    na = sum("Marcus" in r["completion"] for r in claude)
+    nb = sum("Chen" in r["completion"] for r in claude)
+    nboth = sum("Marcus" in r["completion"] and "Chen" in r["completion"]
+                for r in claude)
+    expected = (na / n) * (nb / n) * n
+    lift = (nboth / n) / ((na / n) * (nb / n)) if na and nb else 0.0
+    return {
+        "cluster_hits": {p: dict(c) for p, c in hits.items()},
+        "marcus_chen": {"n": n, "marcus": na, "chen": nb, "both": nboth,
+                        "expected": round(expected, 1), "cooc_lift": round(lift, 2)},
+    }
+
+
 def write_csv(rows: dict, models: list[str]) -> None:
     path = os.path.join(config.OUTPUT_DIR, "name_counts.csv")
     with open(path, "w", newline="", encoding="utf-8") as f:
@@ -482,7 +526,7 @@ def _md_table(header: list[str], rows: list[list]) -> str:
 def write_report(rows: dict, models: list[str], n_per_model: dict,
                  blocklist: list, gender: dict | None = None,
                  roles: dict | None = None, trunc: dict | None = None,
-                 coverage: dict | None = None) -> None:
+                 coverage: dict | None = None, ghost: dict | None = None) -> None:
     lines = ["# LLM Character-Name Slop — Report", ""]
     lines.append(
         f"Sampled via `fal-ai/any-llm`, prompt: two-sentence story openings, "
@@ -659,6 +703,30 @@ def write_report(rows: dict, models: list[str], n_per_model: dict,
                      ", ".join(f"{n} {c}" for n, c in pp["top_names"]))
         lines.append("- **secondary:** " +
                      ", ".join(f"{n} {c}" for n, c in ps["top_names"]))
+
+    # Cross-check against prior work (Brzozowski & Chung, arXiv:2606.02184)
+    if ghost:
+        lines += ["", "## Cross-check vs prior work (the ghost couple)",
+                  "Presence of the character clusters reported by Brzozowski & "
+                  "Chung (arXiv:2606.02184) in our fiction samples (raw full-name "
+                  "match):", ""]
+        rows_gc = []
+        for fam, names in GHOST_COUPLE_CLUSTERS.items():
+            for name in names:
+                h = ghost["cluster_hits"].get(name, {})
+                where = ", ".join(f"{m}:{c}" for m, c in sorted(h.items())) or "—"
+                rows_gc.append([name, f"{fam} (theirs)", sum(h.values()), where])
+        lines.append(_md_table(
+            ["name", "their attribution", "total hits", "our hits by model"],
+            rows_gc))
+        mc = ghost["marcus_chen"]
+        lines += ["",
+                  f"**Ensemble test (Marcus + Chen, Claude):** Marcus in "
+                  f"{mc['marcus']}/{mc['n']} stories, Chen in {mc['chen']}, both "
+                  f"in **{mc['both']}** (chance would give ~{mc['expected']}) — a "
+                  f"co-occurrence lift of {mc['cooc_lift']}×. Real but modest; "
+                  f"the 'couple' is looser in fiction than in fabricated-expert "
+                  f"text."]
 
     # Genre conditioning
     genre_bound = []

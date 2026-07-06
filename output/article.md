@@ -17,6 +17,29 @@ because a name carries no plot and hides no reasoning — it's a naked draw from
 the model's distribution. If that distribution has collapsed onto "Elara" and
 "Kael" and "Marcus Chen," you can see it in a single word.
 
+## Prior work: the ghost couple
+
+This behaviour is not something we discovered from scratch. In *"The Ghost
+Couple: Correlated LLM Name Priors and Their Haunting of the Web and Academic
+Publishing"* (Brzozowski & Chung, [arXiv:2606.02184](https://arxiv.org/abs/2606.02184),
+June 2026), the authors show that models don't merely default to
+high-probability individual names — they emit *correlated character ensembles*,
+pairs and trios whose co-occurrence beats chance and recur across independent
+generations. They report the fingerprints by model family (Claude: Elena
+Vasquez + Marcus Chen + Amara Okafor; Gemini: Aris Thorne + Lena Petrova; GPT:
+Elara Voss), find them version-specific and suppressed at release boundaries,
+and trace real downstream harm — thousands of "ghost-authored" records on
+Zenodo naming these nonexistent people.
+
+Our contribution is not the phenomenon but a different cut of it: we measure it
+in **creative fiction** rather than fabricated experts, quantify over-use as
+**lift against human-name baselines** (SSA and Census) rather than raw
+co-occurrence, add **genre, narrative-role, and gender** analysis, and ship a
+**writer-facing blocklist**. And because we sampled current models in a
+different domain, our data serves as an independent check on their fingerprints
+— which it both confirms and complicates (see "Cross-checking the ghost couple"
+below).
+
 ## Why a blocklist
 
 If you write fiction with these tools, or build products on top of them, the
@@ -234,6 +257,40 @@ character built by welding two blocklisted surnames together. When a model needs
 name to sound gothic, "Thorne" is so load-bearing it will deploy it wherever a
 name slot opens.
 
+## Result 8: cross-checking the ghost couple
+
+Because Brzozowski & Chung name specific clusters, we can test their fingerprints
+against our (independently generated, fiction-domain) samples. The result is a
+partial replication — which is exactly what you'd hope for from an independent
+measurement:
+
+| Their reported cluster | In our 1,000 fiction samples |
+|---|---|
+| Claude: **Elena Vasquez** | 3 hits — all Claude ✓ |
+| Claude: **Marcus Chen** | 9 hits — all Claude ✓ |
+| Gemini: Aris Thorne | 6 hits — all **DeepSeek**, not Gemini |
+| Gemini: Lena Petrova | 2 hits (1 DeepSeek, 1 Gemini) |
+| GPT: Elara Voss | 0 — our Elara is bare "Elara", and it's **Gemini's** |
+| Claude: Amara Okafor | 0 |
+
+The Claude fingerprint replicates cleanly: the exact surnames they flag (Vasquez,
+Chen) show up only in Claude here too. But the attributions **move across
+domains**. They tie Elara to GPT; in fiction it's overwhelmingly Gemini's (46%
+of its stories). They tie Aris Thorne to Gemini; we see it only in DeepSeek. Far
+from undermining either result, this pins down what kind of thing a name prior
+is: **domain-specific and version-specific**, not a fixed property of a model.
+The fingerprint is real; the ink changes with the surface.
+
+We can also test their central claim directly — that these are *ensembles*, not
+independent names. In our Claude samples, "Marcus" appears in 65 stories and
+"Chen" in 70; if they were independent they'd co-occur in ~23 stories by chance,
+but they actually share **38** — a co-occurrence lift of 1.7×. So the pairing is
+real but, in fiction, looser than the "couple" metaphor implies. The tightest
+recurring duo we found is Llama's **Emily + Rachel** (together in 39 of 200
+stories), and Gemini's Elara behaves like their partnerless "Elara Voss" — a hub
+that pairs with a rotating cast of male secondaries (Elara + Liam, Elara + Finn,
+Elara + Leo) rather than one fixed companion.
+
 ## The blocklist
 
 The full ranked lists live in `blocklist.json` (structured for dropping into
@@ -300,3 +357,11 @@ underlying data as models change, `python run.py sample` re-samples from scratch
 
 The point isn't that Elara is a bad name. It's that she shouldn't be *every*
 name — and now there's a number for how often she is.
+
+## References
+
+- Michał Brzozowski and Neo Christopher Chung. *The Ghost Couple: Correlated LLM
+  Name Priors and Their Haunting of the Web and Academic Publishing.* arXiv:2606.02184,
+  June 2026. <https://arxiv.org/abs/2606.02184>
+- US Social Security Administration, national baby-name data (first-name
+  baseline). US Census Bureau, 2010 surname frequencies (surname baseline).
