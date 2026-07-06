@@ -28,8 +28,8 @@ pairs and trios whose co-occurrence beats chance and recur across independent
 generations. They report the fingerprints by model family (Claude: Elena
 Vasquez + Marcus Chen + Amara Okafor; Gemini: Aris Thorne + Lena Petrova; GPT:
 Elara Voss), find them version-specific and suppressed at release boundaries,
-and trace real downstream harm — thousands of "ghost-authored" records on
-Zenodo naming these nonexistent people.
+and trace real downstream harm — 1,655 "ghost-authored" records on Zenodo
+naming these nonexistent people.
 
 Our contribution is not the phenomenon but a different cut of it: we measure it
 in **creative fiction** rather than fabricated experts, quantify over-use as
@@ -273,13 +273,16 @@ measurement:
 | GPT: Elara Voss | 0 — our Elara is bare "Elara", and it's **Gemini's** |
 | Claude: Amara Okafor | 0 |
 
-The Claude fingerprint replicates cleanly: the exact surnames they flag (Vasquez,
-Chen) show up only in Claude here too. But the attributions **move across
-domains**. They tie Elara to GPT; in fiction it's overwhelmingly Gemini's (46%
-of its stories). They tie Aris Thorne to Gemini; we see it only in DeepSeek. Far
-from undermining either result, this pins down what kind of thing a name prior
-is: **domain-specific and version-specific**, not a fixed property of a model.
-The fingerprint is real; the ink changes with the surface.
+The Claude fingerprint replicates cleanly: the exact full names they flag —
+*Elena Vasquez* and *Marcus Chen* — appear only in Claude samples here too.
+(The surname "Chen" on its own is common across models — it's the specific
+full-name pairing that is Claude's.) But the attributions **move across
+domains**. They tie *Elara Voss* to GPT; in fiction the full "Elara Voss" never
+appears, and bare "Elara" is overwhelmingly Gemini's (46% of its stories). They
+tie Aris Thorne to Gemini; we see it only in DeepSeek. Far from undermining
+either result, this pins down what kind of thing a name prior is:
+**domain-specific and version-specific**, not a fixed property of a model. The
+fingerprint is real; the ink changes with the surface.
 
 We can also test their central claim directly — that these are *ensembles*, not
 independent names. In our Claude samples, "Marcus" appears in 65 stories and

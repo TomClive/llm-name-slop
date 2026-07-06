@@ -101,14 +101,14 @@ Names marked † have fewer than 10 pooled hits — thin evidence; treat the lif
 | Mara | first | 9 | 4% | 138× |
 | Margot | first | 9 | 4% | 186× |
 | Kael | first | 7 | 4% | 1660× |
-| Priya | first | 6 | 3% | 261× |
 | Chen | first | 6 | 3% | 6476× |
+| Priya | first | 6 | 3% | 261× |
 | Dev | first | 5 | 2% | 509× |
-| Yara | first | 5 | 2% | 262× |
 | Marina | first | 5 | 2% | 38× |
+| Yara | first | 5 | 2% | 262× |
 | David | first | 4 | 2% | 0× |
-| Thomas | first | 4 | 2% | 4× |
 | Diane | first | 4 | 2% | 3× |
+| Thomas | first | 4 | 2% | 4× |
 
 ### deepseek/deepseek-v3.1-terminus
 
@@ -120,18 +120,18 @@ Names marked † have fewer than 10 pooled hits — thin evidence; treat the lif
 | Clara | first | 30 | 15% | 126× |
 | Kaelen | first | 26 | 13% | 7681× |
 | Liam | first | 26 | 13% | 65× |
-| Maya | first | 17 | 8% | 144× |
 | Lena | first | 17 | 8% | 252× |
+| Maya | first | 17 | 8% | 144× |
 | Elias | first | 16 | 8% | 78× |
-| Thorne | surname | 10 | 5% | 236× |
 | Aris | first | 10 | 5% | 755× |
+| Thorne | surname | 10 | 5% | 236× |
 | Vance | surname | 7 | 4% | 62× |
-| Finch | surname | 6 | 3% | 67× |
 | Chloe | first | 6 | 3% | 13× |
-| Kael | first | 5 | 2% | 1660× |
-| Eleanor | first | 5 | 2% | 61× |
-| Ben | first | 5 | 2% | 63× |
+| Finch | surname | 6 | 3% | 67× |
 | Amelia | first | 5 | 2% | 22× |
+| Ben | first | 5 | 2% | 63× |
+| Eleanor | first | 5 | 2% | 61× |
+| Kael | first | 5 | 2% | 1660× |
 | Rostova | surname | 5 | 2% | 1770849× |
 | Lyra | first | 4 | 2% | 1440× |
 
@@ -140,25 +140,25 @@ Names marked † have fewer than 10 pooled hits — thin evidence; treat the lif
 | name | type | n | share of 200 | lift |
 |---|---|---|---|---|
 | Elara | first | 92 | 46% | 48772× |
-| Liam | first | 25 | 12% | 65× |
 | Leo | first | 25 | 12% | 212× |
+| Liam | first | 25 | 12% | 65× |
 | Sarah | first | 15 | 8% | 14× |
 | Eleanor | first | 14 | 7% | 61× |
-| Thomas | first | 12 | 6% | 4× |
 | Finn | first | 12 | 6% | 163× |
-| Elias | first | 10 | 5% | 78× |
+| Thomas | first | 12 | 6% | 4× |
 | Amelia | first | 10 | 5% | 22× |
+| Elias | first | 10 | 5% | 78× |
 | Jax | first | 9 | 4% | 162× |
-| Maya | first | 8 | 4% | 144× |
 | Mark | first | 8 | 4% | 2× |
+| Maya | first | 8 | 4% | 144× |
 | Arthur | first | 6 | 3% | 65× |
-| Chloe | first | 5 | 2% | 13× |
 | Beatrice | first | 5 | 2% | 47× |
-| Kael | first | 4 | 2% | 1660× |
-| Clara | first | 4 | 2% | 126× |
-| Kaelen | first | 4 | 2% | 7681× |
+| Chloe | first | 5 | 2% | 13× |
 | Anya | first | 4 | 2% | 107× |
-| Miles | first | 4 | 2% | 16× |
+| Clara | first | 4 | 2% | 126× |
+| Kael | first | 4 | 2% | 1660× |
+| Kaelen | first | 4 | 2% | 7681× |
+| Michael | first | 4 | 2% | 0× |
 
 ### meta-llama/llama-4-maverick
 
@@ -174,16 +174,16 @@ Names marked † have fewer than 10 pooled hits — thin evidence; treat the lif
 | Taylor | surname | 13 | 6% | 11× |
 | Thompson | surname | 13 | 6% | 7× |
 | Eira | first | 12 | 6% | 8197× |
-| Olivia | first | 11 | 6% | 9× |
 | Arin | first | 11 | 6% | 780× |
-| Sophia | first | 11 | 6% | 17× |
 | Blackwood | surname | 11 | 6% | 597× |
-| Maya | first | 10 | 5% | 144× |
+| Olivia | first | 11 | 6% | 9× |
+| Sophia | first | 11 | 6% | 17× |
 | Lena | first | 10 | 5% | 252× |
+| Maya | first | 10 | 5% | 144× |
 | Shadowglow | surname | 10 | 5% | 3836839× |
-| Lyra | first | 9 | 4% | 1440× |
-| Jenkins | surname | 9 | 4% | 25× |
 | Elianore | first | 9 | 4% | 3381514× |
+| Jenkins | surname | 9 | 4% | 25× |
+| Lyra | first | 9 | 4% | 1440× |
 
 ### openai/gpt-5-mini
 
@@ -200,15 +200,15 @@ Names marked † have fewer than 10 pooled hits — thin evidence; treat the lif
 | Lena | first | 12 | 6% | 252× |
 | Sophia | first | 12 | 6% | 17× |
 | Lyra | first | 10 | 5% | 1440× |
+| Alex | first | 9 | 4% | 9× |
 | Chen | surname | 9 | 4% | 139× |
 | Jenkins | surname | 9 | 4% | 25× |
-| Alex | first | 9 | 4% | 9× |
-| James | first | 8 | 4% | 3× |
 | Jack | first | 8 | 4% | 12× |
+| James | first | 8 | 4% | 3× |
 | Windsor | surname | 8 | 4% | 465× |
 | Jamie | first | 7 | 4% | 8× |
-| Vex | surname | 7 | 4% | 3836839× |
 | Lucy | first | 7 | 4% | 18× |
+| Vex | surname | 7 | 4% | 3836839× |
 
 ## Names every model loves
 Appearing ≥2× in **all** 5 models:
@@ -233,10 +233,10 @@ First-name mentions classified via SSA sex ratio (≥80% one sex = gendered; the
 **Distribution collapse:** `top ♀ share` is the fraction of a model's female protagonists carried by its single most common female name. Gemini's Elara alone accounts for ~46% of its female characters — 3× the concentration of any other model — while Claude's female names are the most varied.
 
 - **claude-sonnet-4.5** — top ♀: Sarah 27, Maya 19, Elena 14, Mira 13, Margaret 10, Mara 9
-- **deepseek-v3.1-terminus** — top ♀: Elara 38, Clara 30, Lena 17, Maya 17, Chloe 6, Eleanor 5
-- **gemini-2.5-flash** — top ♀: Elara 92, Sarah 15, Eleanor 14, Amelia 10, Maya 8, Chloe 5
-- **llama-4-maverick** — top ♀: Emily 81, Rachel 58, Emilia 37, Eira 12, Sophia 11, Olivia 11
-- **gpt-5-mini** — top ♀: Emily 60, Rachel 37, Emilia 20, Emma 19, Sophia 12, Lena 12
+- **deepseek-v3.1-terminus** — top ♀: Elara 38, Clara 30, Lena 17, Maya 17, Chloe 6, Amelia 5
+- **gemini-2.5-flash** — top ♀: Elara 92, Sarah 15, Eleanor 14, Amelia 10, Maya 8, Beatrice 5
+- **llama-4-maverick** — top ♀: Emily 81, Rachel 58, Emilia 37, Eira 12, Olivia 11, Sophia 11
+- **gpt-5-mini** — top ♀: Emily 60, Rachel 37, Emilia 20, Emma 19, Elara 12, Lena 12
 
 ## Protagonist vs secondary character
 The prompt asks for a protagonist then one secondary character, so the first-named person is the protagonist and the second is the secondary. Splitting by role reveals a strong structural default that the pooled gender balance hides.
@@ -263,7 +263,7 @@ Most common protagonist / secondary gender pairing (pooled):
 Top protagonist names vs top secondary names (pooled):
 
 - **protagonists:** Elara 130, Emily 128, Emilia 52, Maya 46, Leo 35, Arthur 33, Sarah 32, Marcus 28
-- **secondary:** Chen 55, Wilson 47, Leo 44, Liam 37, Rachel 29, Taylor 25, Clara 23, Thorne 20
+- **secondary:** Chen 55, Wilson 47, Leo 44, Liam 37, Rachel 29, Taylor 25, Clara 23, Elara 20
 
 ## Cross-check vs prior work (the ghost couple)
 Presence of the character clusters reported by Brzozowski & Chung (arXiv:2606.02184) in our fiction samples (raw full-name match):

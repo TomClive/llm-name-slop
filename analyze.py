@@ -25,6 +25,17 @@ def is_truncated(text: str) -> bool:
     return not t.endswith((".", "!", "?", "…"))
 
 
+def ranked(counter, n: int | None = None) -> list:
+    """Counter items sorted by count desc, then name asc — deterministic.
+
+    Counter.most_common breaks ties by first-insertion order, which is not
+    stable across runs because upstream name sets iterate in hash-seed order.
+    Sorting ties by name keeps regenerated outputs byte-identical.
+    """
+    items = sorted(counter.items(), key=lambda kv: (-kv[1], str(kv[0]).casefold()))
+    return items[:n] if n is not None else items
+
+
 def wilson_interval(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
     """95% Wilson score interval for a binomial proportion k/n.
 
@@ -316,7 +327,7 @@ def gender_breakdown(by_model: dict, known_first: set, female: Counter,
                 elif g == "male":
                     mal[name] += 1
         f_tot = gcount["female"] or 1
-        top_f = fem.most_common(1)[0] if fem else ("—", 0)
+        top_f = ranked(fem, 1)[0] if fem else ("—", 0)
         out[short] = {
             "female": gcount["female"], "male": gcount["male"],
             "ambiguous": gcount["ambiguous"], "unknown": gcount["unknown"],
@@ -327,8 +338,8 @@ def gender_breakdown(by_model: dict, known_first: set, female: Counter,
             "top_female": top_f[0], "top_female_count": top_f[1],
             "top1_female_share": round(top_f[1] / f_tot, 3),
             "elara_female_share": round(fem.get("Elara", 0) / f_tot, 3),
-            "top_female_names": fem.most_common(6),
-            "top_male_names": mal.most_common(6),
+            "top_female_names": ranked(fem, 6),
+            "top_male_names": ranked(mal, 6),
         }
     return out
 
@@ -367,7 +378,7 @@ def role_breakdown(by_model: dict, known_first: set, female: Counter,
         out["per_model"][short] = {
             r: {"female": g[r]["female"], "male": g[r]["male"],
                 "pct_female": pctf(r),
-                "top_names": names[r].most_common(5)} for r in ROLES}
+                "top_names": ranked(names[r], 5)} for r in ROLES}
 
     def ppctf(role):
         f, m = pooled_g[role]["female"], pooled_g[role]["male"]
@@ -377,7 +388,7 @@ def role_breakdown(by_model: dict, known_first: set, female: Counter,
     out["pooled"] = {
         r: {"female": pooled_g[r]["female"], "male": pooled_g[r]["male"],
             "pct_female": ppctf(r),
-            "top_names": pooled_names[r].most_common(8)} for r in ROLES}
+            "top_names": ranked(pooled_names[r], 8)} for r in ROLES}
     out["gender_pairing"] = {
         f"{a}_primary+{b}_secondary": {
             "count": pooled_pairs[(a, b)],
@@ -455,8 +466,10 @@ def write_csv(rows: dict, models: list[str]) -> None:
         w.writerow(["name", "type"] + [f"n_{m}" for m in models] +
                    ["pooled_count", "llm_freq", "human_freq", "lift",
                     "lift_ci_low", "lift_ci_high", "n_models", "unstable"])
-        for (typ, key), row in sorted(rows.items(),
-                                      key=lambda kv: -kv[1]["lift"]):
+        for (typ, key), row in sorted(
+                rows.items(),
+                key=lambda kv: (-kv[1]["lift"], kv[1]["display"].casefold(),
+                                kv[0][0])):
             w.writerow([row["display"], typ] +
                        [row["per_model"].get(m, 0) for m in models] +
                        [row["pooled"], f"{row['llm_freq']:.5f}",
@@ -481,7 +494,7 @@ def blocklist_rows(rows: dict) -> list:
     ]
     return sorted(picked, key=lambda r: (
         r["tier"] == "invented", -r["lift"] if r["tier"] == "real"
-        else -r["pooled"]))
+        else -r["pooled"], r["display"].casefold(), r["type"]))
 
 
 def write_blocklist(rows: dict) -> list:
@@ -507,7 +520,7 @@ def write_blocklist(rows: dict) -> list:
             "n_models": row["n_models"],
             "n_genres": row["n_genres"],
             "baseline_count": row["baseline_count"],
-            "top_genre": row["genres"].most_common(1)[0][0],
+            "top_genre": ranked(row["genres"], 1)[0][0],
         })
     with open(os.path.join(config.OUTPUT_DIR, "blocklist.json"), "w",
               encoding="utf-8") as f:
@@ -617,13 +630,15 @@ def write_report(rows: dict, models: list[str], n_per_model: dict,
     lines.append(_md_table(
         ["name", "type", "pooled n", "models", "top genre"],
         [[r["display"] + ("†" if r["unstable"] else ""), r["type"], r["pooled"],
-          r["n_models"], r["genres"].most_common(1)[0][0]] for r in invented]))
+          r["n_models"], ranked(r["genres"], 1)[0][0]] for r in invented]))
 
     # Per-model top 20
     lines += ["", "## Per-model top 20 names (by sample count)"]
     for m in models:
-        ranked = sorted(rows.values(), key=lambda r: -r["per_model"].get(m, 0))
-        top = [r for r in ranked if r["per_model"].get(m, 0) > 0][:20]
+        ranked_rows = sorted(rows.values(),
+                             key=lambda r: (-r["per_model"].get(m, 0),
+                                            r["display"].casefold(), r["type"]))
+        top = [r for r in ranked_rows if r["per_model"].get(m, 0) > 0][:20]
         lines += ["", f"### {m}", ""]
         lines.append(_md_table(
             ["name", "type", "n", f"share of {n_per_model[m]}", "lift"],
@@ -635,7 +650,7 @@ def write_report(rows: dict, models: list[str], n_per_model: dict,
     universal = sorted(
         (r for r in rows.values()
          if all(r["per_model"].get(m, 0) >= config.MIN_SAMPLES for m in models)),
-        key=lambda r: -r["pooled"])
+        key=lambda r: (-r["pooled"], r["display"].casefold(), r["type"]))
     lines += ["", "## Names every model loves",
               f"Appearing ≥{config.MIN_SAMPLES}× in **all** {len(models)} models:", ""]
     if universal:
@@ -732,7 +747,7 @@ def write_report(rows: dict, models: list[str], n_per_model: dict,
     genre_bound = []
     for r in blocklist:
         if r["pooled"] >= 4:
-            genre, cnt = r["genres"].most_common(1)[0]
+            genre, cnt = ranked(r["genres"], 1)[0]
             share = cnt / r["pooled"]
             if share >= 0.6:
                 genre_bound.append((r, genre, share))
@@ -759,7 +774,7 @@ def write_heatmap(rows: dict, models: list[str], n_per_model: dict) -> None:
         (r for r in rows.values()
          if r["n_models_min"] >= config.MIN_MODELS
          and r["lift"] >= config.LIFT_THRESHOLD),
-        key=lambda r: -r["pooled"])[:40]
+        key=lambda r: (-r["pooled"], r["display"].casefold(), r["type"]))[:40]
 
     short = [m.split("/")[-1] for m in models]
     cells = []

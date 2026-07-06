@@ -238,7 +238,7 @@
       "n_models": 5,
       "n_genres": 6,
       "baseline_count": 103229,
-      "top_genre": "contemporary story set in the UK"
+      "top_genre": "contemporary literary fiction"
     },
     {
       "name": "Mara",
@@ -343,7 +343,7 @@
       "n_models": 3,
       "n_genres": 5,
       "baseline_count": 35614,
-      "top_genre": "science fiction"
+      "top_genre": "horror"
     },
     {
       "name": "Elias",
@@ -433,7 +433,7 @@
       "n_models": 4,
       "n_genres": 6,
       "baseline_count": 77711,
-      "top_genre": "horror"
+      "top_genre": "contemporary literary fiction"
     },
     {
       "name": "Elianore",
@@ -495,7 +495,7 @@
       "n_models": 2,
       "n_genres": 4,
       "baseline_count": 7621,
-      "top_genre": "historical fiction"
+      "top_genre": "contemporary story set in the UK"
     },
     {
       "name": "Mayfield",
