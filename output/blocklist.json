@@ -1,0 +1,705 @@
+{
+  "first_names": [
+    {
+      "name": "Elara",
+      "tier": "real",
+      "lift": 48771.8,
+      "lift_ci": [
+        42083.7,
+        56306.6
+      ],
+      "pooled_count": 153,
+      "unstable": false,
+      "n_models": 5,
+      "n_genres": 8,
+      "baseline_count": 815,
+      "top_genre": "high fantasy"
+    },
+    {
+      "name": "Eira",
+      "tier": "real",
+      "lift": 8196.9,
+      "lift_ci": [
+        4978.8,
+        13443.6
+      ],
+      "pooled_count": 15,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 1,
+      "baseline_count": 475,
+      "top_genre": "high fantasy"
+    },
+    {
+      "name": "Kaelen",
+      "tier": "real",
+      "lift": 7680.6,
+      "lift_ci": [
+        5400.4,
+        10881.8
+      ],
+      "pooled_count": 30,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 3,
+      "baseline_count": 1015,
+      "top_genre": "high fantasy"
+    },
+    {
+      "name": "Thorne",
+      "tier": "real",
+      "lift": 5125.4,
+      "lift_ci": [
+        2600.6,
+        10062.9
+      ],
+      "pooled_count": 8,
+      "unstable": true,
+      "n_models": 2,
+      "n_genres": 1,
+      "baseline_count": 405,
+      "top_genre": "high fantasy"
+    },
+    {
+      "name": "Hawk",
+      "tier": "real",
+      "lift": 2267.5,
+      "lift_ci": [
+        1099.7,
+        4657.6
+      ],
+      "pooled_count": 7,
+      "unstable": true,
+      "n_models": 2,
+      "n_genres": 3,
+      "baseline_count": 802,
+      "top_genre": "thriller"
+    },
+    {
+      "name": "Kael",
+      "tier": "real",
+      "lift": 1659.7,
+      "lift_ci": [
+        1099.4,
+        2496.0
+      ],
+      "pooled_count": 22,
+      "unstable": false,
+      "n_models": 5,
+      "n_genres": 2,
+      "baseline_count": 3447,
+      "top_genre": "high fantasy"
+    },
+    {
+      "name": "Lyra",
+      "tier": "real",
+      "lift": 1439.9,
+      "lift_ci": [
+        986.0,
+        2094.7
+      ],
+      "pooled_count": 26,
+      "unstable": false,
+      "n_models": 4,
+      "n_genres": 2,
+      "baseline_count": 4696,
+      "top_genre": "high fantasy"
+    },
+    {
+      "name": "Arin",
+      "tier": "real",
+      "lift": 779.5,
+      "lift_ci": [
+        456.5,
+        1326.0
+      ],
+      "pooled_count": 13,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 2,
+      "baseline_count": 4337,
+      "top_genre": "high fantasy"
+    },
+    {
+      "name": "Kaelin",
+      "tier": "real",
+      "lift": 580.6,
+      "lift_ci": [
+        294.6,
+        1139.9
+      ],
+      "pooled_count": 8,
+      "unstable": true,
+      "n_models": 2,
+      "n_genres": 1,
+      "baseline_count": 3583,
+      "top_genre": "high fantasy"
+    },
+    {
+      "name": "Emilia",
+      "tier": "real",
+      "lift": 360.6,
+      "lift_ci": [
+        279.9,
+        462.6
+      ],
+      "pooled_count": 57,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 7,
+      "baseline_count": 41120,
+      "top_genre": "historical fiction"
+    },
+    {
+      "name": "Lena",
+      "tier": "real",
+      "lift": 251.6,
+      "lift_ci": [
+        186.3,
+        338.4
+      ],
+      "pooled_count": 41,
+      "unstable": false,
+      "n_models": 4,
+      "n_genres": 6,
+      "baseline_count": 42389,
+      "top_genre": "contemporary literary fiction"
+    },
+    {
+      "name": "Leo",
+      "tier": "real",
+      "lift": 212.3,
+      "lift_ci": [
+        173.0,
+        259.6
+      ],
+      "pooled_count": 85,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 7,
+      "baseline_count": 104138,
+      "top_genre": "contemporary literary fiction"
+    },
+    {
+      "name": "Finnley",
+      "tier": "real",
+      "lift": 194.6,
+      "lift_ci": [
+        75.7,
+        498.1
+      ],
+      "pooled_count": 4,
+      "unstable": true,
+      "n_models": 2,
+      "n_genres": 3,
+      "baseline_count": 5346,
+      "top_genre": "high fantasy"
+    },
+    {
+      "name": "Finn",
+      "tier": "real",
+      "lift": 162.7,
+      "lift_ci": [
+        100.4,
+        262.7
+      ],
+      "pooled_count": 16,
+      "unstable": false,
+      "n_models": 3,
+      "n_genres": 6,
+      "baseline_count": 25581,
+      "top_genre": "historical fiction"
+    },
+    {
+      "name": "Jax",
+      "tier": "real",
+      "lift": 162.1,
+      "lift_ci": [
+        92.9,
+        281.7
+      ],
+      "pooled_count": 12,
+      "unstable": false,
+      "n_models": 3,
+      "n_genres": 1,
+      "baseline_count": 19256,
+      "top_genre": "science fiction"
+    },
+    {
+      "name": "Maya",
+      "tier": "real",
+      "lift": 143.6,
+      "lift_ci": [
+        111.5,
+        184.3
+      ],
+      "pooled_count": 57,
+      "unstable": false,
+      "n_models": 5,
+      "n_genres": 6,
+      "baseline_count": 103229,
+      "top_genre": "contemporary story set in the UK"
+    },
+    {
+      "name": "Mara",
+      "tier": "real",
+      "lift": 137.6,
+      "lift_ci": [
+        77.0,
+        245.1
+      ],
+      "pooled_count": 11,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 5,
+      "baseline_count": 20786,
+      "top_genre": "romance"
+    },
+    {
+      "name": "Clara",
+      "tier": "real",
+      "lift": 125.5,
+      "lift_ci": [
+        91.1,
+        172.4
+      ],
+      "pooled_count": 36,
+      "unstable": false,
+      "n_models": 3,
+      "n_genres": 5,
+      "baseline_count": 74604,
+      "top_genre": "romance"
+    },
+    {
+      "name": "Anya",
+      "tier": "real",
+      "lift": 107.1,
+      "lift_ci": [
+        51.9,
+        219.9
+      ],
+      "pooled_count": 7,
+      "unstable": true,
+      "n_models": 2,
+      "n_genres": 4,
+      "baseline_count": 17004,
+      "top_genre": "thriller"
+    },
+    {
+      "name": "Matt",
+      "tier": "real",
+      "lift": 104.8,
+      "lift_ci": [
+        53.2,
+        205.7
+      ],
+      "pooled_count": 8,
+      "unstable": true,
+      "n_models": 2,
+      "n_genres": 2,
+      "baseline_count": 19864,
+      "top_genre": "horror"
+    },
+    {
+      "name": "Zara",
+      "tier": "real",
+      "lift": 95.6,
+      "lift_ci": [
+        40.9,
+        222.7
+      ],
+      "pooled_count": 5,
+      "unstable": true,
+      "n_models": 3,
+      "n_genres": 3,
+      "baseline_count": 13608,
+      "top_genre": "contemporary story set in the UK"
+    },
+    {
+      "name": "Marcus",
+      "tier": "real",
+      "lift": 83.7,
+      "lift_ci": [
+        66.9,
+        104.3
+      ],
+      "pooled_count": 72,
+      "unstable": false,
+      "n_models": 5,
+      "n_genres": 7,
+      "baseline_count": 223659,
+      "top_genre": "thriller"
+    },
+    {
+      "name": "Jasper",
+      "tier": "real",
+      "lift": 80.3,
+      "lift_ci": [
+        44.9,
+        143.1
+      ],
+      "pooled_count": 11,
+      "unstable": false,
+      "n_models": 3,
+      "n_genres": 5,
+      "baseline_count": 35614,
+      "top_genre": "science fiction"
+    },
+    {
+      "name": "Elias",
+      "tier": "real",
+      "lift": 78.5,
+      "lift_ci": [
+        53.7,
+        114.1
+      ],
+      "pooled_count": 26,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 7,
+      "baseline_count": 86197,
+      "top_genre": "historical fiction"
+    },
+    {
+      "name": "Arthur",
+      "tier": "real",
+      "lift": 64.9,
+      "lift_ci": [
+        48.8,
+        86.1
+      ],
+      "pooled_count": 45,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 7,
+      "baseline_count": 180263,
+      "top_genre": "horror"
+    },
+    {
+      "name": "Liam",
+      "tier": "real",
+      "lift": 64.7,
+      "lift_ci": [
+        50.9,
+        81.9
+      ],
+      "pooled_count": 63,
+      "unstable": false,
+      "n_models": 4,
+      "n_genres": 8,
+      "baseline_count": 253439,
+      "top_genre": "contemporary story set in the UK"
+    },
+    {
+      "name": "Ben",
+      "tier": "real",
+      "lift": 62.7,
+      "lift_ci": [
+        33.0,
+        118.5
+      ],
+      "pooled_count": 9,
+      "unstable": true,
+      "n_models": 3,
+      "n_genres": 4,
+      "baseline_count": 37349,
+      "top_genre": "contemporary story set in the UK"
+    },
+    {
+      "name": "Eleanor",
+      "tier": "real",
+      "lift": 61.2,
+      "lift_ci": [
+        39.7,
+        93.9
+      ],
+      "pooled_count": 20,
+      "unstable": false,
+      "n_models": 3,
+      "n_genres": 6,
+      "baseline_count": 85038,
+      "top_genre": "historical fiction"
+    },
+    {
+      "name": "Elena",
+      "tier": "real",
+      "lift": 60.2,
+      "lift_ci": [
+        38.2,
+        94.6
+      ],
+      "pooled_count": 18,
+      "unstable": false,
+      "n_models": 4,
+      "n_genres": 6,
+      "baseline_count": 77711,
+      "top_genre": "horror"
+    },
+    {
+      "name": "Elianore",
+      "tier": "invented",
+      "lift": 3381514.3,
+      "lift_ci": [
+        1980201.0,
+        5752385.5
+      ],
+      "pooled_count": 13,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 2,
+      "baseline_count": 0,
+      "top_genre": "science fiction"
+    },
+    {
+      "name": "Lyrien",
+      "tier": "invented",
+      "lift": 1300582.4,
+      "lift_ci": [
+        556000.0,
+        3030649.8
+      ],
+      "pooled_count": 5,
+      "unstable": true,
+      "n_models": 2,
+      "n_genres": 1,
+      "baseline_count": 0,
+      "top_genre": "high fantasy"
+    }
+  ],
+  "surnames": [
+    {
+      "name": "Blackwood",
+      "tier": "real",
+      "lift": 596.7,
+      "lift_ci": [
+        373.5,
+        949.7
+      ],
+      "pooled_count": 17,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 7,
+      "baseline_count": 8407,
+      "top_genre": "high fantasy"
+    },
+    {
+      "name": "Windsor",
+      "tier": "real",
+      "lift": 464.7,
+      "lift_ci": [
+        266.3,
+        807.6
+      ],
+      "pooled_count": 12,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 4,
+      "baseline_count": 7621,
+      "top_genre": "historical fiction"
+    },
+    {
+      "name": "Mayfield",
+      "tier": "real",
+      "lift": 237.6,
+      "lift_ci": [
+        160.2,
+        351.2
+      ],
+      "pooled_count": 24,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 4,
+      "baseline_count": 29805,
+      "top_genre": "thriller"
+    },
+    {
+      "name": "Thorne",
+      "tier": "real",
+      "lift": 236.3,
+      "lift_ci": [
+        143.5,
+        387.5
+      ],
+      "pooled_count": 15,
+      "unstable": false,
+      "n_models": 4,
+      "n_genres": 5,
+      "baseline_count": 18738,
+      "top_genre": "science fiction"
+    },
+    {
+      "name": "Wellington",
+      "tier": "real",
+      "lift": 217.5,
+      "lift_ci": [
+        93.0,
+        506.8
+      ],
+      "pooled_count": 5,
+      "unstable": true,
+      "n_models": 2,
+      "n_genres": 4,
+      "baseline_count": 6784,
+      "top_genre": "romance"
+    },
+    {
+      "name": "Grey",
+      "tier": "real",
+      "lift": 186.2,
+      "lift_ci": [
+        94.5,
+        365.6
+      ],
+      "pooled_count": 8,
+      "unstable": true,
+      "n_models": 2,
+      "n_genres": 3,
+      "baseline_count": 12680,
+      "top_genre": "horror"
+    },
+    {
+      "name": "Chen",
+      "tier": "real",
+      "lift": 139.2,
+      "lift_ci": [
+        112.7,
+        171.4
+      ],
+      "pooled_count": 80,
+      "unstable": false,
+      "n_models": 3,
+      "n_genres": 7,
+      "baseline_count": 169580,
+      "top_genre": "thriller"
+    },
+    {
+      "name": "Gable",
+      "tier": "real",
+      "lift": 120.7,
+      "lift_ci": [
+        47.0,
+        309.0
+      ],
+      "pooled_count": 4,
+      "unstable": true,
+      "n_models": 2,
+      "n_genres": 2,
+      "baseline_count": 9779,
+      "top_genre": "horror"
+    },
+    {
+      "name": "Patel",
+      "tier": "real",
+      "lift": 89.8,
+      "lift_ci": [
+        71.6,
+        112.3
+      ],
+      "pooled_count": 70,
+      "unstable": false,
+      "n_models": 3,
+      "n_genres": 6,
+      "baseline_count": 229973,
+      "top_genre": "contemporary story set in the UK"
+    },
+    {
+      "name": "Vance",
+      "tier": "real",
+      "lift": 62.4,
+      "lift_ci": [
+        33.9,
+        114.2
+      ],
+      "pooled_count": 10,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 3,
+      "baseline_count": 47324,
+      "top_genre": "science fiction"
+    },
+    {
+      "name": "Maynard",
+      "tier": "real",
+      "lift": 56.7,
+      "lift_ci": [
+        27.5,
+        116.4
+      ],
+      "pooled_count": 7,
+      "unstable": true,
+      "n_models": 2,
+      "n_genres": 2,
+      "baseline_count": 36460,
+      "top_genre": "contemporary story set in the UK"
+    },
+    {
+      "name": "Quasar",
+      "tier": "invented",
+      "lift": 3836839.3,
+      "lift_ci": [
+        2246837.5,
+        6526951.2
+      ],
+      "pooled_count": 13,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 2,
+      "baseline_count": 0,
+      "top_genre": "science fiction"
+    },
+    {
+      "name": "Shadowglow",
+      "tier": "invented",
+      "lift": 3836839.3,
+      "lift_ci": [
+        2246837.5,
+        6526951.2
+      ],
+      "pooled_count": 13,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 1,
+      "baseline_count": 0,
+      "top_genre": "high fantasy"
+    },
+    {
+      "name": "Vex",
+      "tier": "invented",
+      "lift": 3836839.3,
+      "lift_ci": [
+        2246837.5,
+        6526951.2
+      ],
+      "pooled_count": 13,
+      "unstable": false,
+      "n_models": 2,
+      "n_genres": 3,
+      "baseline_count": 0,
+      "top_genre": "science fiction"
+    },
+    {
+      "name": "Fanshawe",
+      "tier": "invented",
+      "lift": 1180565.9,
+      "lift_ci": [
+        459406.3,
+        3022166.3
+      ],
+      "pooled_count": 4,
+      "unstable": true,
+      "n_models": 2,
+      "n_genres": 1,
+      "baseline_count": 0,
+      "top_genre": "historical fiction"
+    }
+  ],
+  "config": {
+    "lift_threshold": 50.0,
+    "min_samples": 2,
+    "min_models": 2,
+    "tiers": {
+      "real": "present in human baseline; lift is a true over-use ratio",
+      "invented": "absent from human baseline; lift is floored/artefactual, ranked by frequency"
+    }
+  }
+}

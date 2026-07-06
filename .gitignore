@@ -1,0 +1,11 @@
+# Downloadable baselines (SSA / Census zips) — reproducible, ~20MB
+data/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db

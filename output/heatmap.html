@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLM Character-Name Slop — Heatmap</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0e1116; color: #e6edf3;
+         font: 14px/1.45 -apple-system, Segoe UI, Roboto, sans-serif;
+         padding: 32px; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  p.sub { color: #8b949e; margin: 0 0 24px; max-width: 70ch; }
+  table { border-collapse: collapse; }
+  th.corner { text-align: left; }
+  th.model { font-weight: 600; padding: 0 6px 10px; text-align: center;
+             vertical-align: bottom; white-space: nowrap; font-size: 12px; }
+  td.name { padding: 2px 12px 2px 0; white-space: nowrap; text-align: right; }
+  td.name .n { font-weight: 600; }
+  td.name .meta { color: #8b949e; font-size: 11px; margin-left: 6px; }
+  .badge { display: inline-block; font-size: 10px; padding: 0 5px;
+           border-radius: 8px; margin-left: 6px; vertical-align: middle; }
+  .badge.invented { background: #3d2b57; color: #d2a8ff; }
+  .badge.real { background: #143a2e; color: #7ee2b8; }
+  td.cell { width: 62px; height: 30px; text-align: center; border-radius: 4px;
+            font-variant-numeric: tabular-nums; font-size: 12px;
+            border: 1px solid #0e1116; }
+  .legend { margin-top: 20px; color: #8b949e; font-size: 12px; }
+  .legend .chip { display: inline-block; width: 14px; height: 14px;
+                  border-radius: 3px; vertical-align: middle; margin: 0 4px; }
+</style></head><body>
+<h1>LLM Character-Name Slop — per-model heatmap</h1>
+<p class="sub">Each cell is the share of that model's 200 story openings that
+contained the name. Darker = more slop. Names ordered by pooled frequency
+across all five models; the badge marks whether the name exists in human
+name data (real) or is a model invention (invented).</p>
+<div id="grid"></div>
+<div class="legend">Share of a model's stories containing the name:
+  <span class="chip" style="background:#0e2a3a"></span> low
+  <span class="chip" style="background:#1f6feb"></span>
+  <span class="chip" style="background:#58a6ff"></span>
+  <span class="chip" style="background:#f0b72f"></span>
+  <span class="chip" style="background:#f85149"></span> high (≈45%)
+</div>
+<script>
+const DATA = {"models": ["claude-sonnet-4.5", "deepseek-v3.1-terminus", "gemini-2.5-flash", "llama-4-maverick", "gpt-5-mini"], "cells": [{"name": "Elara", "type": "first", "tier": "real", "lift": 48771.840375, "pooled": 153, "shares": [0.015, 0.19, 0.46, 0.04, 0.06]}, {"name": "Leo", "type": "first", "tier": "real", "lift": 212.31143923025957, "pooled": 85, "shares": [0.0, 0.3, 0.125, 0.0, 0.0]}, {"name": "Chen", "type": "surname", "tier": "real", "lift": 139.23327919991038, "pooled": 80, "shares": [0.32, 0.0, 0.0, 0.035, 0.045]}, {"name": "Marcus", "type": "first", "tier": "real", "lift": 83.7359684521148, "pooled": 72, "shares": [0.325, 0.005, 0.015, 0.01, 0.005]}, {"name": "Patel", "type": "surname", "tier": "real", "lift": 89.8358243975406, "pooled": 70, "shares": [0.01, 0.0, 0.0, 0.195, 0.145]}, {"name": "Liam", "type": "first", "tier": "real", "lift": 64.65963686079546, "pooled": 63, "shares": [0.0, 0.13, 0.125, 0.04, 0.02]}, {"name": "Maya", "type": "first", "tier": "real", "lift": 143.62723504795116, "pooled": 57, "shares": [0.095, 0.085, 0.04, 0.05, 0.015]}, {"name": "Emilia", "type": "first", "tier": "real", "lift": 360.561257605603, "pooled": 57, "shares": [0.0, 0.0, 0.0, 0.185, 0.1]}, {"name": "Arthur", "type": "first", "tier": "real", "lift": 64.93388413659964, "pooled": 45, "shares": [0.0, 0.195, 0.03, 0.0, 0.0]}, {"name": "Lena", "type": "first", "tier": "real", "lift": 251.5870668082095, "pooled": 41, "shares": [0.0, 0.085, 0.01, 0.05, 0.06]}, {"name": "Clara", "type": "first", "tier": "real", "lift": 125.51696738824474, "pooled": 36, "shares": [0.01, 0.15, 0.02, 0.0, 0.0]}, {"name": "Kaelen", "type": "first", "tier": "real", "lift": 7680.604783464567, "pooled": 30, "shares": [0.0, 0.13, 0.02, 0.0, 0.0]}, {"name": "Lyra", "type": "first", "tier": "real", "lift": 1439.861301256121, "pooled": 26, "shares": [0.0, 0.02, 0.015, 0.045, 0.05]}, {"name": "Elias", "type": "first", "tier": "real", "lift": 78.45922796352583, "pooled": 26, "shares": [0.0, 0.08, 0.05, 0.0, 0.0]}, {"name": "Mayfield", "type": "surname", "tier": "real", "lift": 237.64999047171713, "pooled": 24, "shares": [0.0, 0.0, 0.0, 0.09, 0.03]}, {"name": "Kael", "type": "first", "tier": "real", "lift": 1659.6759292343386, "pooled": 22, "shares": [0.035, 0.025, 0.02, 0.02, 0.01]}, {"name": "Eleanor", "type": "first", "tier": "real", "lift": 61.17580921694752, "pooled": 20, "shares": [0.005, 0.025, 0.07, 0.0, 0.0]}, {"name": "Elena", "type": "first", "tier": "real", "lift": 60.24933956145768, "pooled": 18, "shares": [0.07, 0.005, 0.005, 0.0, 0.01]}, {"name": "Blackwood", "type": "surname", "tier": "real", "lift": 596.7418206470029, "pooled": 17, "shares": [0.0, 0.0, 0.0, 0.055, 0.03]}, {"name": "Finn", "type": "first", "tier": "real", "lift": 162.68719068094754, "pooled": 16, "shares": [0.0, 0.015, 0.06, 0.005, 0.0]}, {"name": "Thorne", "type": "surname", "tier": "real", "lift": 236.25178824910617, "pooled": 15, "shares": [0.005, 0.05, 0.015, 0.0, 0.005]}, {"name": "Eira", "type": "first", "tier": "real", "lift": 8196.947962184873, "pooled": 15, "shares": [0.0, 0.0, 0.0, 0.06, 0.015]}, {"name": "Quasar", "type": "surname", "tier": "invented", "lift": 3836839.292, "pooled": 13, "shares": [0.0, 0.0, 0.0, 0.045, 0.02]}, {"name": "Elianore", "type": "first", "tier": "invented", "lift": 3381514.2659999994, "pooled": 13, "shares": [0.0, 0.0, 0.0, 0.045, 0.02]}, {"name": "Shadowglow", "type": "surname", "tier": "invented", "lift": 3836839.292, "pooled": 13, "shares": [0.0, 0.0, 0.0, 0.05, 0.015]}, {"name": "Arin", "type": "first", "tier": "real", "lift": 779.5099737206085, "pooled": 13, "shares": [0.0, 0.0, 0.0, 0.055, 0.01]}, {"name": "Vex", "type": "surname", "tier": "invented", "lift": 3836839.292, "pooled": 13, "shares": [0.0, 0.0, 0.0, 0.03, 0.035]}, {"name": "Jax", "type": "first", "tier": "real", "lift": 162.0915918367347, "pooled": 12, "shares": [0.0, 0.0, 0.045, 0.005, 0.01]}, {"name": "Windsor", "type": "surname", "tier": "real", "lift": 464.6677785358174, "pooled": 12, "shares": [0.0, 0.0, 0.0, 0.02, 0.04]}, {"name": "Mara", "type": "first", "tier": "real", "lift": 137.64763082695916, "pooled": 11, "shares": [0.045, 0.01, 0.0, 0.0, 0.0]}, {"name": "Jasper", "type": "first", "tier": "real", "lift": 80.33921948617154, "pooled": 11, "shares": [0.0, 0.0, 0.01, 0.03, 0.015]}, {"name": "Vance", "type": "surname", "tier": "real", "lift": 62.36481436872689, "pooled": 10, "shares": [0.0, 0.035, 0.015, 0.0, 0.0]}, {"name": "Ben", "type": "first", "tier": "real", "lift": 62.67867036144578, "pooled": 9, "shares": [0.01, 0.025, 0.01, 0.0, 0.0]}, {"name": "Grey", "type": "surname", "tier": "real", "lift": 186.19445406513682, "pooled": 8, "shares": [0.0, 0.0, 0.0, 0.03, 0.01]}, {"name": "Kaelin", "type": "first", "tier": "real", "lift": 580.6171473214285, "pooled": 8, "shares": [0.0, 0.0, 0.0, 0.01, 0.03]}, {"name": "Thorne", "type": "first", "tier": "real", "lift": 5125.447921182266, "pooled": 8, "shares": [0.0, 0.0, 0.0, 0.01, 0.03]}, {"name": "Matt", "type": "first", "tier": "real", "lift": 104.75368014095143, "pooled": 8, "shares": [0.0, 0.0, 0.0, 0.01, 0.03]}, {"name": "Anya", "type": "first", "tier": "real", "lift": 107.07529397236107, "pooled": 7, "shares": [0.0, 0.015, 0.02, 0.0, 0.0]}, {"name": "Maynard", "type": "surname", "tier": "real", "lift": 56.6630204327912, "pooled": 7, "shares": [0.0, 0.0, 0.0, 0.025, 0.01]}, {"name": "Hawk", "type": "first", "tier": "real", "lift": 2267.5160323785803, "pooled": 7, "shares": [0.0, 0.0, 0.0, 0.015, 0.02]}]};
+function color(s){
+  // 0 -> dark slate, ramp through blue, amber, red at ~0.45+
+  if (s <= 0) return '#161b22';
+  const t = Math.min(1, s / 0.45);
+  const stops = [[14,42,58],[31,111,235],[88,166,255],[240,183,47],[248,81,73]];
+  const x = t*(stops.length-1); const i = Math.floor(x); const f = x-i;
+  const a = stops[i], b = stops[Math.min(i+1,stops.length-1)];
+  const c = a.map((v,k)=>Math.round(v+(b[k]-v)*f));
+  return `rgb(${c[0]},${c[1]},${c[2]})`;
+}
+function textColor(s){ return s/0.45 > 0.28 && s/0.45 < 0.72 ? '#0e1116'
+                       : (s>0 ? '#e6edf3' : '#484f58'); }
+let h = '<table><thead><tr><th class="corner"></th>';
+for (const m of DATA.models) h += `<th class="model">${m}</th>`;
+h += '</tr></thead><tbody>';
+for (const row of DATA.cells){
+  const lift = row.lift >= 10000 ? Math.round(row.lift/1000)+'k'
+             : Math.round(row.lift);
+  h += `<tr><td class="name"><span class="n">${row.name}</span>`
+     + `<span class="badge ${row.tier}">${row.tier}</span>`
+     + `<span class="meta">${row.type} · ${lift}× · n=${row.pooled}</span></td>`;
+  for (const s of row.shares){
+    const pct = s>0 ? Math.round(s*100)+'%' : '';
+    h += `<td class="cell" style="background:${color(s)};color:${textColor(s)}">${pct}</td>`;
+  }
+  h += '</tr>';
+}
+h += '</tbody></table>';
+document.getElementById('grid').innerHTML = h;
+</script></body></html>

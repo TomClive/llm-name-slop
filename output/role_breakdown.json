@@ -1,0 +1,393 @@
+{
+  "per_model": {
+    "claude-sonnet-4.5": {
+      "primary": {
+        "female": 135,
+        "male": 45,
+        "pct_female": 0.75,
+        "top_names": [
+          [
+            "Marcus",
+            27
+          ],
+          [
+            "Sarah",
+            20
+          ],
+          [
+            "Maya",
+            18
+          ],
+          [
+            "Mira",
+            11
+          ],
+          [
+            "Elena",
+            10
+          ]
+        ]
+      },
+      "secondary": {
+        "female": 48,
+        "male": 67,
+        "pct_female": 0.417,
+        "top_names": [
+          [
+            "Chen",
+            55
+          ],
+          [
+            "Marcus",
+            15
+          ],
+          [
+            "James",
+            9
+          ],
+          [
+            "Margot",
+            4
+          ],
+          [
+            "David",
+            3
+          ]
+        ]
+      }
+    },
+    "deepseek-v3.1-terminus": {
+      "primary": {
+        "female": 64,
+        "male": 106,
+        "pct_female": 0.376,
+        "top_names": [
+          [
+            "Leo",
+            32
+          ],
+          [
+            "Arthur",
+            31
+          ],
+          [
+            "Elara",
+            24
+          ],
+          [
+            "Kaelen",
+            17
+          ],
+          [
+            "Liam",
+            13
+          ]
+        ]
+      },
+      "secondary": {
+        "female": 78,
+        "male": 89,
+        "pct_female": 0.467,
+        "top_names": [
+          [
+            "Clara",
+            23
+          ],
+          [
+            "Leo",
+            23
+          ],
+          [
+            "Elara",
+            13
+          ],
+          [
+            "Thorne",
+            10
+          ],
+          [
+            "Kaelen",
+            8
+          ]
+        ]
+      }
+    },
+    "gemini-2.5-flash": {
+      "primary": {
+        "female": 147,
+        "male": 47,
+        "pct_female": 0.758,
+        "top_names": [
+          [
+            "Elara",
+            90
+          ],
+          [
+            "Eleanor",
+            12
+          ],
+          [
+            "Sarah",
+            10
+          ],
+          [
+            "Elias",
+            9
+          ],
+          [
+            "Amelia",
+            8
+          ]
+        ]
+      },
+      "secondary": {
+        "female": 39,
+        "male": 126,
+        "pct_female": 0.236,
+        "top_names": [
+          [
+            "Liam",
+            21
+          ],
+          [
+            "Leo",
+            21
+          ],
+          [
+            "Finn",
+            12
+          ],
+          [
+            "Jax",
+            8
+          ],
+          [
+            "Thomas",
+            7
+          ]
+        ]
+      }
+    },
+    "llama-4-maverick": {
+      "primary": {
+        "female": 183,
+        "male": 13,
+        "pct_female": 0.934,
+        "top_names": [
+          [
+            "Emily",
+            75
+          ],
+          [
+            "Emilia",
+            35
+          ],
+          [
+            "Eira",
+            11
+          ],
+          [
+            "Sophia",
+            11
+          ],
+          [
+            "Lena",
+            10
+          ]
+        ]
+      },
+      "secondary": {
+        "female": 51,
+        "male": 102,
+        "pct_female": 0.333,
+        "top_names": [
+          [
+            "Wilson",
+            29
+          ],
+          [
+            "Rachel",
+            19
+          ],
+          [
+            "Taylor",
+            12
+          ],
+          [
+            "Arin",
+            8
+          ],
+          [
+            "Grey",
+            6
+          ]
+        ]
+      }
+    },
+    "gpt-5-mini": {
+      "primary": {
+        "female": 170,
+        "male": 16,
+        "pct_female": 0.914,
+        "top_names": [
+          [
+            "Emily",
+            53
+          ],
+          [
+            "Emma",
+            18
+          ],
+          [
+            "Emilia",
+            17
+          ],
+          [
+            "Lena",
+            12
+          ],
+          [
+            "Lyra",
+            9
+          ]
+        ]
+      },
+      "secondary": {
+        "female": 49,
+        "male": 103,
+        "pct_female": 0.322,
+        "top_names": [
+          [
+            "Wilson",
+            18
+          ],
+          [
+            "Taylor",
+            13
+          ],
+          [
+            "Rachel",
+            10
+          ],
+          [
+            "Windsor",
+            7
+          ],
+          [
+            "Emily",
+            6
+          ]
+        ]
+      }
+    }
+  },
+  "pooled": {
+    "primary": {
+      "female": 699,
+      "male": 227,
+      "pct_female": 0.755,
+      "top_names": [
+        [
+          "Elara",
+          130
+        ],
+        [
+          "Emily",
+          128
+        ],
+        [
+          "Emilia",
+          52
+        ],
+        [
+          "Maya",
+          46
+        ],
+        [
+          "Leo",
+          35
+        ],
+        [
+          "Arthur",
+          33
+        ],
+        [
+          "Sarah",
+          32
+        ],
+        [
+          "Marcus",
+          28
+        ]
+      ]
+    },
+    "secondary": {
+      "female": 265,
+      "male": 487,
+      "pct_female": 0.352,
+      "top_names": [
+        [
+          "Chen",
+          55
+        ],
+        [
+          "Wilson",
+          47
+        ],
+        [
+          "Leo",
+          44
+        ],
+        [
+          "Liam",
+          37
+        ],
+        [
+          "Rachel",
+          29
+        ],
+        [
+          "Taylor",
+          25
+        ],
+        [
+          "Clara",
+          23
+        ],
+        [
+          "Thorne",
+          20
+        ]
+      ]
+    }
+  },
+  "gender_pairing": {
+    "female_primary+female_secondary": {
+      "count": 122,
+      "share": 0.176
+    },
+    "female_primary+male_secondary": {
+      "count": 397,
+      "share": 0.571
+    },
+    "male_primary+female_secondary": {
+      "count": 110,
+      "share": 0.158
+    },
+    "male_primary+male_secondary": {
+      "count": 66,
+      "share": 0.095
+    }
+  },
+  "truncation_robustness": {
+    "truncated": {
+      "secondary_pct_female": 0.333,
+      "n": 415
+    },
+    "complete": {
+      "secondary_pct_female": 0.377,
+      "n": 337
+    }
+  },
+  "secondary_fill_rate": 0.926
+}

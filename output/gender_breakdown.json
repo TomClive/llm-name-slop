@@ -1,0 +1,327 @@
+{
+  "claude-sonnet-4.5": {
+    "female": 213,
+    "male": 168,
+    "ambiguous": 28,
+    "unknown": 32,
+    "pct_female": 0.559,
+    "distinct_female_names": 80,
+    "distinct_male_names": 62,
+    "top_female": "Sarah",
+    "top_female_count": 27,
+    "top1_female_share": 0.127,
+    "elara_female_share": 0.014,
+    "top_female_names": [
+      [
+        "Sarah",
+        27
+      ],
+      [
+        "Maya",
+        19
+      ],
+      [
+        "Elena",
+        14
+      ],
+      [
+        "Mira",
+        13
+      ],
+      [
+        "Margaret",
+        10
+      ],
+      [
+        "Mara",
+        9
+      ]
+    ],
+    "top_male_names": [
+      [
+        "Marcus",
+        65
+      ],
+      [
+        "James",
+        13
+      ],
+      [
+        "Kael",
+        7
+      ],
+      [
+        "Dev",
+        5
+      ],
+      [
+        "David",
+        4
+      ],
+      [
+        "Thomas",
+        4
+      ]
+    ]
+  },
+  "deepseek-v3.1-terminus": {
+    "female": 168,
+    "male": 192,
+    "ambiguous": 43,
+    "unknown": 14,
+    "pct_female": 0.467,
+    "distinct_female_names": 46,
+    "distinct_male_names": 35,
+    "top_female": "Elara",
+    "top_female_count": 38,
+    "top1_female_share": 0.226,
+    "elara_female_share": 0.226,
+    "top_female_names": [
+      [
+        "Elara",
+        38
+      ],
+      [
+        "Clara",
+        30
+      ],
+      [
+        "Lena",
+        17
+      ],
+      [
+        "Maya",
+        17
+      ],
+      [
+        "Chloe",
+        6
+      ],
+      [
+        "Eleanor",
+        5
+      ]
+    ],
+    "top_male_names": [
+      [
+        "Leo",
+        60
+      ],
+      [
+        "Arthur",
+        39
+      ],
+      [
+        "Liam",
+        26
+      ],
+      [
+        "Elias",
+        16
+      ],
+      [
+        "Ben",
+        5
+      ],
+      [
+        "Kael",
+        5
+      ]
+    ]
+  },
+  "gemini-2.5-flash": {
+    "female": 201,
+    "male": 179,
+    "ambiguous": 7,
+    "unknown": 7,
+    "pct_female": 0.529,
+    "distinct_female_names": 45,
+    "distinct_male_names": 56,
+    "top_female": "Elara",
+    "top_female_count": 92,
+    "top1_female_share": 0.458,
+    "elara_female_share": 0.458,
+    "top_female_names": [
+      [
+        "Elara",
+        92
+      ],
+      [
+        "Sarah",
+        15
+      ],
+      [
+        "Eleanor",
+        14
+      ],
+      [
+        "Amelia",
+        10
+      ],
+      [
+        "Maya",
+        8
+      ],
+      [
+        "Chloe",
+        5
+      ]
+    ],
+    "top_male_names": [
+      [
+        "Liam",
+        25
+      ],
+      [
+        "Leo",
+        25
+      ],
+      [
+        "Thomas",
+        12
+      ],
+      [
+        "Finn",
+        12
+      ],
+      [
+        "Elias",
+        10
+      ],
+      [
+        "Jax",
+        9
+      ]
+    ]
+  },
+  "llama-4-maverick": {
+    "female": 289,
+    "male": 118,
+    "ambiguous": 22,
+    "unknown": 25,
+    "pct_female": 0.71,
+    "distinct_female_names": 42,
+    "distinct_male_names": 53,
+    "top_female": "Emily",
+    "top_female_count": 81,
+    "top1_female_share": 0.28,
+    "elara_female_share": 0.028,
+    "top_female_names": [
+      [
+        "Emily",
+        81
+      ],
+      [
+        "Rachel",
+        58
+      ],
+      [
+        "Emilia",
+        37
+      ],
+      [
+        "Eira",
+        12
+      ],
+      [
+        "Sophia",
+        11
+      ],
+      [
+        "Olivia",
+        11
+      ]
+    ],
+    "top_male_names": [
+      [
+        "Jack",
+        8
+      ],
+      [
+        "Liam",
+        8
+      ],
+      [
+        "James",
+        8
+      ],
+      [
+        "Ryan",
+        7
+      ],
+      [
+        "Henry",
+        6
+      ],
+      [
+        "Jasper",
+        6
+      ]
+    ]
+  },
+  "gpt-5-mini": {
+    "female": 265,
+    "male": 137,
+    "ambiguous": 31,
+    "unknown": 29,
+    "pct_female": 0.659,
+    "distinct_female_names": 67,
+    "distinct_male_names": 77,
+    "top_female": "Emily",
+    "top_female_count": 60,
+    "top1_female_share": 0.226,
+    "elara_female_share": 0.045,
+    "top_female_names": [
+      [
+        "Emily",
+        60
+      ],
+      [
+        "Rachel",
+        37
+      ],
+      [
+        "Emilia",
+        20
+      ],
+      [
+        "Emma",
+        19
+      ],
+      [
+        "Lena",
+        12
+      ],
+      [
+        "Sophia",
+        12
+      ]
+    ],
+    "top_male_names": [
+      [
+        "Alex",
+        9
+      ],
+      [
+        "James",
+        8
+      ],
+      [
+        "Jack",
+        8
+      ],
+      [
+        "Matt",
+        6
+      ],
+      [
+        "Thorne",
+        6
+      ],
+      [
+        "Hawk",
+        4
+      ]
+    ]
+  }
+}
