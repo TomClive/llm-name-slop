@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Name extraction from completions: spaCy PERSON NER + capitalised-token fallback."""
 
 import re

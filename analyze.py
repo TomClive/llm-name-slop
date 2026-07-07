@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Analysis: baselines, per-name counts, lift, blocklist, and report."""
 
 import csv
