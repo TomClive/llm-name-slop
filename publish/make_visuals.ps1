@@ -27,6 +27,9 @@ $FSub = New-Font 32
 $FLabel = New-Font 34 -Bold
 $FSmall = New-Font 27
 $FTiny = New-Font 22
+$FTableHeader = New-Font 28 -Bold
+$FTable = New-Font 25
+$FTableBold = New-Font 25 -Bold
 
 function New-Chart($Title, $Subtitle) {
     $bmp = [System.Drawing.Bitmap]::new($W, $H)
@@ -58,6 +61,47 @@ function Add-RoundedRect($g, $x, $y, $w, $h, $r, $color) {
     $path.CloseFigure()
     $g.FillPath([System.Drawing.SolidBrush]::new($color), $path)
     $path.Dispose()
+}
+
+function Add-TextBox($g, $text, $font, $brush, $x, $y, $w, $h) {
+    $fmt = [System.Drawing.StringFormat]::new()
+    $fmt.LineAlignment = [System.Drawing.StringAlignment]::Near
+    $fmt.Alignment = [System.Drawing.StringAlignment]::Near
+    $fmt.Trimming = [System.Drawing.StringTrimming]::Word
+    $rect = [System.Drawing.RectangleF]::new($x, $y, $w, $h)
+    $g.DrawString($text, $font, $brush, $rect, $fmt)
+    $fmt.Dispose()
+}
+
+function New-TableCard($Name, $Title, $Subtitle, $Headers, $Rows, $ColWidths, $Top, $RowH) {
+    $parts = New-Chart $Title $Subtitle
+    $bmp = $parts[0]
+    $g = $parts[1]
+    $x0 = 80
+    $y = $Top
+    $totalW = 0
+    foreach ($w in $ColWidths) { $totalW += $w }
+
+    Add-RoundedRect $g $x0 $y $totalW $RowH 16 $INK
+    $x = $x0
+    for ($c = 0; $c -lt $Headers.Count; $c++) {
+        Add-TextBox $g $Headers[$c] $FTableHeader ([System.Drawing.SolidBrush]::new([System.Drawing.Color]::White)) ($x + 18) ($y + 14) ($ColWidths[$c] - 28) ($RowH - 16)
+        $x += $ColWidths[$c]
+    }
+    $y += $RowH
+
+    for ($r = 0; $r -lt $Rows.Count; $r++) {
+        $fill = if ($r % 2 -eq 0) { $PANEL } else { [System.Drawing.ColorTranslator]::FromHtml("#f0e7dc") }
+        Add-RoundedRect $g $x0 $y $totalW $RowH 10 $fill
+        $x = $x0
+        for ($c = 0; $c -lt $Headers.Count; $c++) {
+            $font = if ($c -eq 0 -or $c -eq 1) { $FTableBold } else { $FTable }
+            Add-TextBox $g $Rows[$r][$c] $font ([System.Drawing.SolidBrush]::new($INK)) ($x + 18) ($y + 14) ($ColWidths[$c] - 28) ($RowH - 18)
+            $x += $ColWidths[$c]
+        }
+        $y += $RowH + 8
+    }
+    Save-Chart $bmp $g $Name
 }
 
 function Save-Chart($bmp, $g, $Name) {
@@ -144,3 +188,52 @@ $g.DrawString("Most common pairing:", $FSmall, [System.Drawing.SolidBrush]::new(
 $g.DrawString("female lead + male secondary = 57%", $FLabel, [System.Drawing.SolidBrush]::new($INK), 330, 670)
 
 Save-Chart $bmp $g "role_gender_skew.png"
+
+New-TableCard "headline_stats_table.png" `
+    "Headline stats for the article" `
+    "Quick facts to drop into the X post" `
+    @("Stat", "Result", "Why it matters") `
+    @(
+        @("Blocklist hit rate", "763 / 1,000 (76.3%)", "Most openings contained at least one final-blocklist name."),
+        @("Elara overall", "153 / 1,000 openings", "The strongest cross-model first-name signal."),
+        @("Gemini's Elara habit", "92 / 200 (46%)", "One model carries much of the Elara effect."),
+        @("Role skew", "76% female leads; 35% female sidekicks", "The prompt produced a strong heroine + male-support pattern."),
+        @("Prior-work check", "Marcus Chen: 9 hits, all Claude", "The Ghost Couple fingerprint partly replicates in fiction.")
+    ) `
+    @(360, 370, 690) `
+    220 `
+    94
+
+New-TableCard "model_signatures_table.png" `
+    "Each model has an accent" `
+    "The names each model reached for most often" `
+    @("Model", "Signature names", "Headline") `
+    @(
+        @("Gemini 2.5 Flash", "Elara, Leo, Liam", "Elara appears in 46% of stories."),
+        @("Claude Sonnet 4.5", "Marcus, Chen, Sarah", "Marcus and Chen each appear in about 32%."),
+        @("DeepSeek v3.1", "Leo, Arthur, Elara", "Older-sounding names plus fantasy spillover."),
+        @("Llama 4 Maverick", "Emily, Rachel, Patel", "Near-twin top cast with GPT-5-mini."),
+        @("GPT-5-mini", "Emily, Rachel, Patel", "Same everyday-fiction cluster as Llama.")
+    ) `
+    @(410, 420, 590) `
+    220 `
+    96
+
+New-TableCard "top_real_names_table.png" `
+    "Most overused real names" `
+    "Real names only; ranked by lift against human baselines" `
+    @("Name", "Type", "Hits", "Lift") `
+    @(
+        @("Elara", "first", "153", "48,772x"),
+        @("Eira", "first", "15", "8,197x"),
+        @("Kaelen", "first", "30", "7,681x"),
+        @("Thorne", "first", "8", "5,125x"),
+        @("Hawk", "first", "7", "2,268x"),
+        @("Kael", "first", "22", "1,660x"),
+        @("Lyra", "first", "26", "1,440x"),
+        @("Blackwood", "surname", "17", "597x"),
+        @("Windsor", "surname", "12", "465x")
+    ) `
+    @(520, 280, 260, 360) `
+    205 `
+    50
