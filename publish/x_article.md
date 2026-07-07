@@ -1,193 +1,188 @@
 # Everyone's Name Is Elara Now
 
-I asked five frontier-ish LLMs to write 1,000 tiny story openings.
+Over the past few years, I've experimented with using LLMs as a partner for
+creative writing.
 
-Nothing complicated: two sentences, eight genres, one everyday object, and a
-simple instruction: introduce a protagonist and one secondary character by name.
+One annoyance that keeps recurring is that they seem to suggest the same names
+over and over again. If you've been brainstorming names, you may have your own
+Elara Vance and Marcus Chen that keep turning up. Over the weekend I spent some
+time working out how I could test this and create a block list for future use.
+These are the results.
 
-Then I counted the names.
+I asked 5 LLMs to create 1,000 story openings with a protagonist and a sidekick.
+In **76%** of those openings (**763 of the 1,000**), the model reached for a
+name from a small, predictable pool. That's the same forenames and surnames
+being used over and over again.
 
-The result was not subtle. In **763 of 1,000** openings, the model used at
-least one name from a small overused pool. Not bad names. Not impossible names.
-Just names with that unmistakable generated-text aftertaste: Elara, Kael, Lyra,
-Marcus, Chen, Patel, Thorne.
+![Headline stats table](visuals/headline_stats_table.png)
 
-![Bar chart showing Elara appearing in 46% of Gemini samples, 19% of DeepSeek samples, 6% of GPT-5-mini samples, 4% of Llama samples, and 2% of Claude samples.](visuals/elara_by_model.png)
+## The Blocklist
 
-## The weird part
+The full ranked lists live in `blocklist.json` and `name_counts.csv`, but the
+headline names are:
 
-The champion is **Elara**.
+**Most overused real first names:** Elara, Eira, Kaelen, Thorne, Hawk, Kael,
+Lyra, Arin, Kaelin, Emilia, Lena, Leo, Maya, Mara, Clara, Marcus, Elias, Arthur,
+Liam, Eleanor, Elena.
 
-Elara appeared in **153 of 1,000** story openings. That is already a lot. But
-the really strange part is not the total; it is the model split.
+**Most overused surnames:** Blackwood, Windsor, Mayfield, Thorne, Wellington,
+Grey, Chen, Patel, Vance, Maynard.
 
-Gemini 2.5 Flash used Elara in **46%** of its stories. DeepSeek used it in
-19%. GPT-5-mini used it in 6%. Llama used it in 4%. Claude barely touched it at
-2%.
+![Most overused real names table](visuals/top_real_names_table.png)
 
-So this is not just "LLMs like Elara." It is more like each model has an accent.
+Why a blocklist? If you're using LLMs as a partner for creative writing, using
+the same names as everyone else makes your stories feel interchangeable and
+derivative. It's a tax on originality.
+
+A list of names to avoid is a cheap fix.
+
+## How I measured it
+
+I prompted five models, one from each major lab, through fal's `any-llm`
+endpoint:
+
+- OpenAI GPT-5-mini
+- Google Gemini 2.5 Flash
+- Anthropic Claude Sonnet 4.5
+- Meta Llama 4 Maverick
+- DeepSeek v3.1 Terminus
+
+Each model got 200 prompts:
+
+> Write the opening two sentences of a {genre} short story involving {a mundane
+> object}. Introduce the protagonist and one secondary character by name.
+
+I rotated through eight genres: high fantasy, sci-fi, literary, romance,
+thriller, historical, horror, and UK-contemporary. I also added a different
+everyday noun to every prompt, like lighthouse, missed train, or jar of honey,
+so that no two prompts were identical and providers couldn't serve a cached
+response.
+
+I kept temperature at 1.0 to get the distribution rather than the single most
+likely answer.
+
+Then I used spaCy's named-entity recogniser to extract first names and surnames,
+and counted how many samples each name appeared in.
+
+To avoid flagging common names like James or Sarah, which turn up regularly in
+real life, I computed **lift**:
+
+> lift = (share of LLM samples containing the name) / (share of the name in a
+> human baseline)
+
+In this case the human baseline was US Social Security first-name data and US
+Census surname data.
+
+A lift of 100x means the models use the name a hundred times more often than
+you would expect based on its prevalence in real names.
+
+A name makes the blocklist if it appears in at least two samples for at least
+two different models and clears a lift threshold of 50x. That "two models" rule
+matters: it throws out any one model's private tics and keeps only slop that
+generalises.
+
+## Elara is doing a lot of work
+
+The biggest single signal was Elara.
+
+Elara appeared in **153 of the 1,000** openings. But the interesting bit is how
+unevenly it was distributed.
+
+Gemini 2.5 Flash used Elara in **46%** of its stories. DeepSeek used it in 19%.
+GPT-5-mini used it in 6%. Llama used it in 4%. Claude barely used it at all.
+
+![Elara by model chart](visuals/elara_by_model.png)
+
+This is not just "LLMs like Elara." It looks more like each model has an accent.
 Gemini says Elara. Claude says Marcus and Chen. Llama and GPT-5-mini say Emily,
-Rachel, Patel, Wilson. DeepSeek says Leo, Arthur, Clara.
+Rachel and Patel. DeepSeek says Leo and Arthur.
 
-Once you see the accent, it is hard to unsee it.
+![Model signatures table](visuals/model_signatures_table.png)
 
-## How I measured "overused"
+## The pattern is not just fantasy names
 
-Raw frequency is not enough. A model using Sarah or James a lot is not
-especially surprising, because humans use those names a lot too.
+Some of the overused names are exactly what you would expect: Kael, Lyra,
+Kaelen, Eira. Those are mostly fantasy or sci-fi.
 
-So I compared model frequency against human baselines:
+But the wider pattern is not confined to fantasy. Elara appeared across all
+eight genres. Marcus, Chen, Leo, Emilia, Elias, Arthur and Liam all appeared
+across seven or eight genres.
 
-- US Social Security baby-name data for first names
-- US Census 2010 data for surnames
+That matters because the problem is not simply "models invent elvish names when
+you ask for fantasy." It is that they often draw from a surprisingly narrow
+pool even when you ask for contemporary, literary, romance, thriller, or
+historical fiction.
 
-The metric is **lift**:
+## There is also a gender skew
 
-> How often does the model use this name, compared with how common the name is
-> in the human baseline?
+Because the prompt asked for a protagonist and a sidekick, I could split the
+names by role.
 
-By that measure, Elara is not just common. It is wildly overrepresented:
-roughly **48,800x** its US baby-name baseline.
-
-That does not mean Elara is a bad name. It means that if you are reading an AI
-draft and the heroine is called Elara, you are not imagining the pattern.
-
-## The collapse is gendered
-
-The clearest version of the effect shows up in female character names.
-
-![Bar chart showing each model's top female name share: Gemini/Elara 46%, Llama/Emily 28%, DeepSeek/Elara 23%, GPT-5-mini/Emily 23%, Claude/Sarah 13%.](visuals/top_female_name_share.png)
-
-Almost one in every two female characters Gemini produced was named Elara.
-
-That is not a typo. Among Gemini's female first-name mentions, **Elara alone
-accounts for 46%**.
-
-Other models collapse too, just onto different names. Llama and GPT-5-mini lean
-hard on Emily. Claude's male side has its own version: Marcus shows up again
-and again, often near Chen.
-
-The general pattern is not "models choose silly fantasy names." It is that
-models often draw from a much narrower name distribution than a human writer
-would.
-
-## The roles are skewed too
-
-Because the prompt asked for a protagonist and a secondary character, I could
-also split names by role.
-
-The result: protagonists were **76% female**. Secondary characters were only
-**35% female**.
-
-![Two-panel visual showing protagonists are 76% female while secondary characters are 35% female, and the most common pairing is female lead plus male secondary at 57%.](visuals/role_gender_skew.png)
-
-The most common template was:
+Across all five models, protagonists were **76% female**. Secondary characters
+were only **35% female**. The most common pairing was:
 
 > female lead + male secondary
 
 That pairing made up **57%** of the stories.
 
-This is probably partly prompt-shaped. "Protagonist plus secondary character"
-may nudge models toward familiar fiction patterns: heroine plus colleague,
-detective, assistant, brother, friend, mentor. I would not overclaim the exact
-percentage yet.
+![Role gender skew chart](visuals/role_gender_skew.png)
 
-But the skew is large enough that it is worth measuring properly.
+I would be careful with this result. The prompt itself may be doing some of the
+work. "Protagonist and sidekick" may nudge the model toward familiar fiction
+patterns: heroine plus colleague, friend, detective, assistant, brother, mentor.
 
-## Prior work: the ghost couple
+But it was strong enough that I think it is worth testing properly.
 
-After I started digging into this, I found a paper that made the whole thing
-feel less like a quirky observation and more like a known model fingerprint:
-Brzozowski and Chung's **"The Ghost Couple"**.
+## Am I just rediscovering someone else's result?
 
-They found that models do not merely repeat individual names. They repeat
-correlated name clusters: pairs and trios that show up together more often than
-chance. Their examples include Claude's **Marcus Chen** and **Elena Vasquez**,
-Gemini's **Aris Thorne**, and GPT's **Elara Voss**.
+Partly, yes.
 
-My data is not a discovery of the broad phenomenon. It is a different cut:
+After starting this, I found Brzozowski and Chung's paper, *The Ghost Couple*,
+which studies repeated LLM name clusters such as Marcus Chen, Elena Vasquez,
+Aris Thorne and Elara Voss.
 
-- creative fiction rather than fabricated experts
-- lift against human name baselines rather than raw co-occurrence
-- genre, gender, and role analysis
-- a practical blocklist for writers and tools
+That paper is not about fiction in the same way this is, but it is clearly
+about the same underlying behaviour: models have name priors, and those priors
+can become fingerprints.
 
-And the overlap is interesting. In my fiction samples, the exact full names
-**Marcus Chen** and **Elena Vasquez** appeared only in Claude, matching their
-Claude fingerprint. But **Elara Voss** never appeared; instead, bare Elara was
-overwhelmingly Gemini's habit.
+The overlap was interesting. In my samples, the exact full names **Marcus Chen**
+and **Elena Vasquez** appeared only in Claude, matching their Claude fingerprint.
+But their GPT-associated **Elara Voss** never appeared. In fiction, bare Elara
+was overwhelmingly a Gemini habit.
 
-So the fingerprint is real, but it changes with domain and model version.
-
-## A useful blocklist
-
-The practical output is a blocklist: names that appeared in at least two
-samples for at least two models, and were at least 50x overrepresented against
-the human baseline.
-
-The most useful real-name entries are:
-
-**First names:** Elara, Eira, Kaelen, Thorne, Hawk, Kael, Lyra, Arin, Emilia,
-Lena, Leo, Maya, Clara, Marcus, Elias, Arthur, Liam, Eleanor, Elena.
-
-**Surnames:** Blackwood, Windsor, Mayfield, Thorne, Wellington, Grey, Chen,
-Patel, Vance, Maynard.
-
-There are also invented or near-invented names like Elianore, Lyrien, Quasar,
-Shadowglow, and Vex. I treat those separately because their lift numbers are
-mostly an artifact of having no human baseline.
+So I don't think this is a brand new phenomenon. I think this is a practical,
+fiction-focused version of it, with a blocklist at the end.
 
 ## Caveats
 
 This is a measurement, not a verdict.
 
-The sample is five models, one prompt style, 200 generations per model. The
-max token cap was too low, so many completions were cut off. The name extraction
-uses spaCy plus patching, which is good enough for the headline patterns but
-still noisy in the long tail.
+The sample is five models, one prompt shape, 200 generations per model. The max
+token cap was too low, so some completions were cut off. The name extraction is
+good enough for the headline patterns, but noisy in the long tail.
 
-The strongest claims are the broad ones:
+I would trust the broad finding much more than the exact rank of name number
+37.
 
-- models have name priors
-- those priors are model-specific
-- the same names recur far more often than human baselines predict
-- creative-writing outputs have their own version of the "ghost name" problem
-
-The exact rank of name number 37 is not the point.
-
-## Why this matters
-
-Names are tiny, but they reveal a lot.
-
-A character name carries almost no reasoning burden. The model is not solving a
-logic problem. It is just drawing from its learned distribution of "what a
-story character sounds like."
-
-And that distribution is often narrow.
-
-If you are writing with AI, this is easy to fix: block or lint the worst names,
-ask for grounded demographics, or generate names from a separate source.
-
-If you are building systems that create people, experts, customers, personas,
-or fictional examples, this is a fingerprint. It can leak the model, the prompt
-style, and the synthetic origin of the text.
+The broad finding is this: LLMs do not just choose names at random. They have
+defaults. Those defaults vary by model. And when you use these tools for
+creative writing, those defaults can leak into the work.
 
 The point is not that Elara is a bad name.
 
-It is that she should not be every name.
+It's that she shouldn't be every name.
 
 ## Data
 
-The full repo includes the raw samples, counts, blocklist, report, and
-reproducible visuals:
+The repo includes the raw samples, counts, blocklist, report and visuals:
 
 - `output/report.md`
 - `output/blocklist.json`
 - `output/name_counts.csv`
 - `publish/visuals/`
 
-Reference paper:
+Reference:
 
-- Michal Brzozowski and Neo Christopher Chung, "The Ghost Couple: Correlated
-  LLM Name Priors and Their Haunting of the Web and Academic Publishing",
+- Michal Brzozowski and Neo Christopher Chung, *The Ghost Couple: Correlated LLM
+  Name Priors and Their Haunting of the Web and Academic Publishing*,
   arXiv:2606.02184.
